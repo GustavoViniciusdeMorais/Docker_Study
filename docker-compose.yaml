@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+    python:
+        build:
+            context: .
+            dockerfile: python.dockerfile
+        ports:
+            - 80:8000
+        volumes:
+            - ./:/code
