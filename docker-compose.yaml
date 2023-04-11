@@ -5,7 +5,19 @@ services:
         build:
             context: .
             dockerfile: python.dockerfile
+        container_name: stddocker
         ports:
             - 80:8000
         volumes:
             - ./:/code
+        networks:
+            stddocker-app-network:
+                ipv4_address: 11.0.0.8
+
+networks:
+    stddocker-app-network:
+        driver: bridge
+        ipam:
+            driver: default
+            config:
+                - subnet: "11.0.0.0/16"
