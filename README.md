@@ -44,3 +44,11 @@ docker run --rm -it [Container Name] bash
 docker network rm $(docker network ls -q)
 
 ```
+
+### Push to docker hub
+```
+docker login # user and pass of dockerhub
+
+docker tag <name-of-image>:<tag> <hub-user>/<repo-name>:<tag>
+docker push <hub-user>/<repo-name>:<tag>
+```
