@@ -47,6 +47,8 @@ docker network rm $(docker network ls -q)
 
 ### Push to docker hub
 ```
+docker commit CONTAINER_ID  CONTAINER_NAME:TAG
+
 docker login # user and pass of dockerhub
 
 docker tag <name-of-image>:<tag> <hub-user>/<repo-name>:<tag>
