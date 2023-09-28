@@ -1,15 +1,15 @@
 version: '3'
 
 services:
-    python:
+    ubuntu:
         build:
             context: .
-            dockerfile: python.dockerfile
+            dockerfile: ubuntu.dockerfile
         container_name: stddocker
         ports:
             - 80:8000
         volumes:
-            - ./:/code
+            - ./:/var/www/html
         networks:
             stddocker-app-network:
                 ipv4_address: 11.0.0.8
