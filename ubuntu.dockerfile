@@ -12,4 +12,6 @@ RUN apt install systemctl -y
 
 WORKDIR /var/www/html
 
+# RUN --privileged=true -v /var/run/docker.sock:/var/run/docker.sock
+
 ENTRYPOINT ["tail", "-f", "/dev/null"]
