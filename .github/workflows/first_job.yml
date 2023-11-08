@@ -1,0 +1,11 @@
+name: Example
+run-name: ${{ github.actor }} is testing
+on: [push]
+jobs:
+  my_first_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print hello
+        run: echo "Hello"
+      - name: Print name
+        run: echo "Name"
