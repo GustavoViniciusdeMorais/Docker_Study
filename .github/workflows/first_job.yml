@@ -1,11 +1,15 @@
-name: Example
-run-name: ${{ github.actor }} is testing
-on: [push]
+name: test python code example
+
+on:
+  push:
+    branches: [ devops ]
+
 jobs:
-  my_first_job:
+  test-example:
     runs-on: ubuntu-latest
     steps:
-      - name: Print hello
-        run: echo "Hello"
-      - name: Print name
-        run: echo "Name"
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.7' 
+      - run: python firstTest.py
