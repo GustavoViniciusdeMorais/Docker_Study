@@ -34,6 +34,16 @@ docker network rm $(docker network ls -q)
 
 ```
 
+### Simple docker build
+The dot means to use the Docker file of the current directory
+```sh
+docker build -t [give image name] .
+```
+The flag -d means run in background
+```sh
+docker run -d -p [local port]:[container port] [image name]
+```
+
 ### Push to docker hub
 ```sh
 docker commit CONTAINER_ID  CONTAINER_NAME:TAG

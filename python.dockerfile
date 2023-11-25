@@ -1,7 +1,18 @@
-FROM python:3.7-alpine
-WORKDIR /code
-RUN pip install flask
-EXPOSE 8000
+FROM gustavovinicius/guspy:flaskmarshmallow
+
+# RUN apt update
+
+# RUN apt install nano
+
+# RUN apt install curl -y
+
+# RUN apt install systemctl -y
+
+# RUN apt install git -y
+
+WORKDIR /var/www/html
+
 ENTRYPOINT ["tail", "-f", "/dev/null"]
-# ENTRYPOINT [ "python" ] 
-# CMD [ "app.py" ]
+
+ENTRYPOINT [ "python3" ]
+CMD [ "app.py" ]

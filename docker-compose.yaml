@@ -1,15 +1,15 @@
 version: '3'
 
 services:
-    python:
+    pydevops:
         build:
             context: .
             dockerfile: python.dockerfile
-        container_name: stddocker
         ports:
-            - 80:8000
+            - 80:80
         volumes:
-            - ./:/code
+            - ./:/var/www/html
+        container_name: pydevops
         networks:
             stddocker-app-network:
                 ipv4_address: 11.0.0.8
