@@ -33,15 +33,19 @@ terraform --help
 ### Simple tutorial
 Write file main.tf
 ```sh
-sudo terraform init
+sudo terraform init # validate script
 
-sudo terraform apply // type yes
+sudo terraform apply # build services
 
-sudo docker ps // check container tutorial is running
+sudo docker ps # check container tutorial is running
 
-http://localhost:8000/ nginx page
+sudo curl -X GET http://localhost:8000  # nginx page
 
-sudo terraform destroy // destroy terraform
+sudo terraform destroy # destroy terraform
 
-sudo docker ps // container is not running
+sudo docker ps # container is not running
+```
+### Show what is going to change at terraform
+```sh
+sudo terraform plan
 ```
