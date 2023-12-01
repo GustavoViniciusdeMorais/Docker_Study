@@ -25,3 +25,15 @@ ENTRYPOINT ["tail", "-f", "/dev/null"]
 ENTRYPOINT [ "python3" ]
 CMD [ "app.py" ]
 ```
+### Post degree lessons
+- 1
+    - DevOps three ways
+    - Github actions with unit test
+        - [Example](.github/workflows/first_job.yml)
+- 2
+    - Virtulization with OS proccesses and isolated fyle systems (Docker, DockerCompose, DockerSwarm)
+        - [DockerCompose](docker-compose.yaml)
+        - [DockerSwarm](DockerSwarm.md)
+    - Infrastructure as Code (IaC with Terraform)
+        - [Terraform](terraform.md)
+            - [script example](main.tf)
