@@ -1,56 +1,70 @@
-# My Docker Study
+# Kubernete
 
-With Flask Python API
+Created by Gustavo Morais
 
-Gustavo
-
-```
-docker-compose up -d --build
-docker exec -it -u 0 python_python_1 sh
-python app.py
+```sh
 ```
 
-### Commands
+### At the docker service configuration, add the attribute
+```
+cap_add:
+  - ALL
+```
+Example
+```
+services:
+    ubuntu:
+        build:
+            context: .
+            dockerfile: ubuntu.dockerfile
+        container_name: stddocker
+        ports:
+            - 80:8000
+        volumes:
+            - ./:/var/www/html
+        cap_add:
+            - ALL
+        networks:
+            stddocker-app-network:
+                ipv4_address: 11.0.0.8
 ```
 
-docker-compose up -d --build
-
-docker-compose down
-
-docker exec -it [Container Name] bash
-
-docker exec -it [Container Name] sh
-
-docker ps
-
-docker container ls
-
-docker image ls
-
-docker image pull alpine
-
-docker container stop $(docker container ls -aq)
-
-docker container rm $(docker container ls -aq)
-
-docker image rm -f $(docker image ls -aq)
-
-docker run -it -d -p 27017:27017 --expose=8080 --name=[Container Name] [Image Name]
-
-docker run --rm -it [Container Name] /bin/sh
-
-docker run --rm -it [Container Name] bash
-
-docker network rm $(docker network ls -q)
-
+### Install docker
+```sh
+chmod u+x installDocker.sh
+./installDocker.sh
 ```
 
-### Push to docker hub
+### install kubectl and minikube
+```sh
+chmod u+x installMinikube.sh
+./installMinikube.sh
 ```
-docker commit CONTAINER_ID  CONTAINER_NAME:TAG
 
-docker login # user and pass of dockerhub
+### Config docker group
+```sh
+sudo chmod u+x addUserToDockerGroup.sh
+sudo ./addUserToDockerGroup.sh
+```
 
-docker tag <name-of-image>:<tag> <hub-user>/<repo-name>:<tag>
-docker push <hub-user>/<repo-name>:<tag>
+### minikube
+```sh
+sudo minikube start --force
+sudo minikube stop --force
+```
+
+### Start dashboard
+```sh
+sudo minikube dashboard
+```
+
+### Create namespaces
+```sh
+sudo kubectl apply -f namespaces.yaml
+sudo kubectl get namespaces
+```
+
+### Create nginx pod at dev env
+```sh
+sudo kubectl apply -f deployDevelopment.yaml
 ```
