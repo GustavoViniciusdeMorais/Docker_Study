@@ -68,3 +68,57 @@ sudo kubectl get namespaces
 ```sh
 sudo kubectl apply -f deployDevelopment.yaml
 ```
+
+### List deployments
+```sh
+kubectl get deployments -n development
+```
+
+### List the pods
+```sh
+kubectl get pods -n development
+```
+
+### List pods with extra info to see the pod IP address
+```sh
+kubectl get pods -n development -o wide
+```
+
+### Delete pod
+```sh
+kubectl delete pod [pod_name] -n development
+```
+
+### List pod events and infos
+```sh
+kubectl describe pod [pod_name] -n development
+```
+
+### Create busybox pod to test if other pods are running with wget
+```sh
+kubectl apply -f busybox.yaml
+kubectl exec -it busybox-574654f4cb-mdcrx -- /bin/sh
+wget [other-pod-IP]
+cat index.html // list the wget result from other pode response
+```
+
+### Check the logs of the nginx pod
+```sh
+kubectl logs myapp-596cc748d4-4wx9c -n development
+```
+
+### Expose the app in the localhost
+```sh
+minikube tunnel // creates the link between the pod and the service
+kubectl apply -f service.yaml
+kubectl get services -n development // get the external IP of the service to curl
+curl [external-IP]
+```
+
+### Delete service, pods, and stop minikube
+```sh
+kubectl delete service [service-name] -n development
+kubectl scale deployment myapp --replicas=0 -n development // scale pods to zero, no pods
+kubectl scale deployment busybox --replicas=0 -n default
+minikube stop
+```
