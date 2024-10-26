@@ -1,0 +1,24 @@
+# persistent-volume.yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: python-code-pv
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "../../api/"  # Replace with the path on the Kubernetes node
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: python-code-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi

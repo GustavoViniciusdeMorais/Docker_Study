@@ -1,0 +1,30 @@
+# api-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: python-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: python-api
+  template:
+    metadata:
+      labels:
+        app: python-api
+    spec:
+      containers:
+      - name: python-api
+        image: python:3.9-slim
+        ports:
+          - containerPort: 5000
+        env:
+          - name: REDIS_HOST
+            value: "redis"  # Redis service name
+        volumeMounts:
+          - mountPath: /app                # Path inside the container
+            name: python-code-volume       # Name of the volume to mount
+      volumes:
+        - name: python-code-volume
+          persistentVolumeClaim:
+            claimName: python-code-pvc     # PVC name to use for this volume

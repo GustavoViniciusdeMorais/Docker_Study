@@ -1,124 +1,34 @@
-# Kubernete
+# API Example
 
 Created by Gustavo Morais
 
+### 
 ```sh
 ```
 
-### At the docker service configuration, add the attribute
-```
-cap_add:
-  - ALL
-```
-Example
-```
-services:
-    ubuntu:
-        build:
-            context: .
-            dockerfile: ubuntu.dockerfile
-        container_name: stddocker
-        ports:
-            - 80:8000
-        volumes:
-            - ./:/var/www/html
-        cap_add:
-            - ALL
-        networks:
-            stddocker-app-network:
-                ipv4_address: 11.0.0.8
-```
-
-### Install docker
-```sh
-chmod u+x installDocker.sh
-./installDocker.sh
-```
-
-### install kubectl and minikube
-```sh
-chmod u+x installMinikube.sh
-./installMinikube.sh
-```
-
-### Config docker group
-```sh
-sudo chmod u+x addUserToDockerGroup.sh
-sudo ./addUserToDockerGroup.sh
-```
-
-### minikube
+### Minikube
 ```sh
 sudo minikube start --force
 sudo minikube stop --force
 ```
 
-### Start dashboard
+### Create env
 ```sh
-sudo minikube dashboard
+kubectl apply -f src/kubernete/persistent-volume.yaml
+kubectl apply -f src/kubernete/redis-deployment.yaml
+kubectl apply -f src/kubernete/api-deployment.yaml
 ```
 
-### Create namespaces
+### Access python API
 ```sh
-sudo kubectl apply -f namespaces.yaml
-sudo kubectl get namespaces
+kubectl get pods
+kubectl exec -it <python-api-pod-name> -- /bin/sh
+pip install flask redis
+flask run --host=0.0.0.0 --port=5000
 ```
 
-### Create nginx pod at dev env
+### Test
 ```sh
-sudo kubectl apply -f deployDevelopment.yaml
-```
-
-### List deployments
-```sh
-kubectl get deployments -n development
-```
-
-### List the pods
-```sh
-kubectl get pods -n development
-```
-
-### List pods with extra info to see the pod IP address
-```sh
-kubectl get pods -n development -o wide
-```
-
-### Delete pod
-```sh
-kubectl delete pod [pod_name] -n development
-```
-
-### List pod events and infos
-```sh
-kubectl describe pod [pod_name] -n development
-```
-
-### Create busybox pod to test if other pods are running with wget
-```sh
-kubectl apply -f busybox.yaml
-kubectl exec -it busybox-574654f4cb-mdcrx -- /bin/sh
-wget [other-pod-IP]
-cat index.html // list the wget result from other pode response
-```
-
-### Check the logs of the nginx pod
-```sh
-kubectl logs myapp-596cc748d4-4wx9c -n development
-```
-
-### Expose the app in the localhost
-```sh
-minikube tunnel // creates the link between the pod and the service
-kubectl apply -f service.yaml
-kubectl get services -n development // get the external IP of the service to curl
-curl [external-IP]
-```
-
-### Delete service, pods, and stop minikube
-```sh
-kubectl delete service [service-name] -n development
-kubectl scale deployment myapp --replicas=0 -n development // scale pods to zero, no pods
-kubectl scale deployment busybox --replicas=0 -n default
-minikube stop
+curl http://<EXTERNAL-IP>/set/mykey/myvalue
+curl http://<EXTERNAL-IP>/get/mykey
 ```
