@@ -3,6 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: python-api
+  namespace: development
 spec:
   replicas: 1
   selector:
@@ -28,3 +29,17 @@ spec:
         - name: python-code-volume
           persistentVolumeClaim:
             claimName: python-code-pvc     # PVC name to use for this volume
+---
+# api-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: python-api
+spec:
+  selector:
+    app: python-api
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5000
+  type: LoadBalancer
