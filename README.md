@@ -14,6 +14,12 @@ docker exec -it -u 0 python_python_1 sh
 python app.py
 ```
 
+### Pull and run
+```
+docker pull kalilinux/kali-rolling
+docker run <options> <image_ID>
+```
+
 ### Commands
 ```
 
