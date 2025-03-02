@@ -49,24 +49,30 @@ sudo ./addUserToDockerGroup.sh
 
 ### minikube
 ```sh
-sudo minikube start --force
-sudo minikube stop --force
+minikube start --force
+minikube stop --force
+```
+
+### infos
+```sh
+kubectl get nodes
+kubectl cluster-info
 ```
 
 ### Start dashboard
 ```sh
-sudo minikube dashboard
+minikube dashboard
 ```
 
 ### Create namespaces
 ```sh
-sudo kubectl apply -f namespaces.yaml
-sudo kubectl get namespaces
+kubectl apply -f namespaces.yaml
+kubectl get namespaces
 ```
 
 ### Create nginx pod at dev env
 ```sh
-sudo kubectl apply -f deployDevelopment.yaml
+kubectl apply -f deployDevelopment.yaml
 ```
 
 ### List deployments
@@ -113,6 +119,15 @@ minikube tunnel // creates the link between the pod and the service
 kubectl apply -f service.yaml
 kubectl get services -n development // get the external IP of the service to curl
 curl [external-IP]
+```
+
+### Simple env cleaning (delete everything)
+```sh
+kubectl delete -f service.yaml
+kubectl delete -f busybox.yaml
+kubectl delete -f deployDevelopment.yaml
+kubectl delete -f namespaces.yaml
+minikube delete
 ```
 
 ### Delete service, pods, and stop minikube
