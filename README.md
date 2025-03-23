@@ -137,3 +137,18 @@ kubectl scale deployment myapp --replicas=0 -n development // scale pods to zero
 kubectl scale deployment busybox --replicas=0 -n default
 minikube stop
 ```
+### Control plane commands
+```sh
+kubectl api-resources
+# the api is accessed throught kubectl command
+
+# list pods in kube system namespace
+kubectl get pods -n kube-system
+
+# list the key value stored of etcd pod
+kubectl logs etcd-minikube -n kube-system | jq .
+
+# jq is a json formatter for linux cli
+# apt-get install jq
+echo '{"foo": 0}' | jq .
+```
