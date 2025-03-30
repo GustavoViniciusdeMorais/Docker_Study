@@ -19,6 +19,12 @@ spec:
       containers:
         - name: myapp
           image: nginx
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+            readOnlyRootFilesystem: true
           ports:
             - containerPort: 80
           resources:

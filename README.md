@@ -152,3 +152,28 @@ kubectl logs etcd-minikube -n kube-system | jq .
 # apt-get install jq
 echo '{"foo": 0}' | jq .
 ```
+### Security
+```sh
+
+curl https://static.snyk.io/cli/latest/snyk-linux -o snyk
+chmod +x ./snyk
+mv ./snyk /usr/local/bin/ 
+
+snyk iac test deployDevelopment.yaml
+
+```
+### Config security in deployment yaml
+```yaml
+spec:
+    containers:
+    - name: myapp
+        image: nginx
+        securityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+            drop:
+            - ALL
+        readOnlyRootFilesystem: true
+        ports:
+        - containerPort: 80
+```
