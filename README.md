@@ -64,3 +64,25 @@ docker login # user and pass of dockerhub
 docker tag <name-of-image>:<tag> <hub-user>/<repo-name>:<tag>
 docker push <hub-user>/<repo-name>:<tag>
 ```
+### Use external network inside other docker compose file
+```yaml
+services:
+    nginx:
+        build:
+            context: .
+            dockerfile: ubuntu.dockerfile
+        ports:
+            - 83:80
+        volumes:
+            - ./:/var/www/html
+        container_name: gusphp
+        # depends_on:
+        #     - mysql
+        #     - mailhog_yii
+        networks:
+            other_network:
+              ipv4_address: 10.171.0.17
+networks:
+  other_network:
+    external: true
+```
