@@ -20,7 +20,10 @@ docker pull kalilinux/kali-rolling
 docker run <options> <image_ID>
 docker run -d -p 83:8080 kalilinux/kali-rolling
 ```
-
+### Format docker ps output
+```
+docker ps --format "{{.ID}}: {{.Names}}"
+```
 ### Commands
 ```
 
