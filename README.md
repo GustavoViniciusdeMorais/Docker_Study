@@ -29,6 +29,10 @@ docker ps --format "{{.ID}}: {{.Names}}"
 
 docker-compose up -d --build
 
+docker compose up -d --build [service_name]
+
+docker compose down [service_name]
+
 docker-compose down
 
 docker exec -it [Container Name] bash
