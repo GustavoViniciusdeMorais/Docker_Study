@@ -8,28 +8,28 @@ Gustavo
 - [Manual Mount Debian Container Runtime](./tutorials/ManualDebianContainerRuntime.md)
 
 ### Basic docker run and iteractive mode example
-```
+```bash
 docker-compose up -d --build
 docker exec -it -u 0 python_python_1 sh
 python app.py
 ```
 ### Expose ports
-```
+```bash
 # It is always local to container, even in docker compose file
 docker run -d -p HOST_PORT:CONTAINER_PORT nginx
 ```
 ### Pull and run
-```
+```bash
 docker pull kalilinux/kali-rolling
 docker run <options> <image_ID>
 docker run -d --name kalilinux -p 83:8080 kalilinux/kali-rolling
 ```
 ### Format docker ps output
-```
+```bash
 docker ps --format "{{.ID}}: {{.Names}}"
 ```
 ### Commands
-```
+```bash
 
 docker-compose up -d --build
 
@@ -68,7 +68,7 @@ docker network rm $(docker network ls -q)
 ```
 
 ### Push to docker hub
-```
+```bash
 docker commit CONTAINER_ID  CONTAINER_NAME:TAG
 
 docker login # user and pass of dockerhub
