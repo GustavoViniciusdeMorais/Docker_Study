@@ -15,7 +15,7 @@ python app.py
 ```
 ### Expose ports
 ```
-# It is alwas local to container, even in docker compose file
+# It is always local to container, even in docker compose file
 docker run -d -p HOST_PORT:CONTAINER_PORT nginx
 ```
 ### Pull and run
