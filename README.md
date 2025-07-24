@@ -13,7 +13,11 @@ docker-compose up -d --build
 docker exec -it -u 0 python_python_1 sh
 python app.py
 ```
-
+### Expose ports
+```
+# It is alwas local to container, even in docker compose file
+docker run -d -p HOST_PORT:CONTAINER_PORT nginx
+```
 ### Pull and run
 ```
 docker pull kalilinux/kali-rolling
