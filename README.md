@@ -6,6 +6,7 @@ Gustavo
 
 ### Tutorials
 - [Manual Mount Debian Container Runtime](./tutorials/ManualDebianContainerRuntime.md)
+- [Export docker images](./tutorials/export_imgs.md)
 
 ### Basic docker run and iteractive mode example
 ```bash
