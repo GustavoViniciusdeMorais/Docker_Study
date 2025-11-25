@@ -9,6 +9,7 @@ apt install python3.10-venv -y
 aws configure
 # keys in the csv file _accessKeys.csv
 # region must be us-east-1
+# default output can be json
 ```
 ```bash
 aws sts assume-role --role-arn arn:aws:iam::00000000000:role/gustavops --external-id ocupytheweb --role-session-name mysess
