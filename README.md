@@ -1,5 +1,10 @@
 # Devops Course
 
+## Methodology Summary
+```
+Linux Container Services (Map Ports), Code Version (Git), Automate Test (Container and Code Lang).
+```
+
 ### Basic docker commands
 ```bash
 docker compose up -d --build ubuntu
